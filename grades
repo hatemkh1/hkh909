@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+// Function to calculate the grade based on the score
+char calculateGrade(int score) {
+    if (score >= 90) {
+        return 'A';
+    } else if (score >= 80) {
+        return 'B';
+    } else if (score >= 70) {
+        return 'C';
+    } else if (score >= 60) {
+        return 'D';
+    } else {
+        return 'F';
+    }
+}
+
+// Function to input scores and display results
+void inputScoresAndDisplayResults() {
+    int numStudents;
+    std::vector<int> scores;
+    std::vector<char> grades;
+    double totalScore = 0.0;
+
+    std::cout << "Enter the number of students: ";
+    std::cin >> numStudents;
+
+    for (int i = 0; i < numStudents; i++) {
+        int score;
+        std::cout << "Enter the score for student " << (i + 1) << ": ";
+        std::cin >> score;
+        scores.push_back(score);
+        totalScore += score;
+        grades.push_back(calculateGrade(score));
+    }
+
+    double averageScore = totalScore / numStudents;
+
+    std::cout << "\nResults:" << std::endl;
+    for (int i = 0; i < numStudents; i++) {
+        std::cout << "Student " << (i + 1) << ": Score = " << scores[i] << ", Grade = " << grades[i] << std::endl;
+    }
+
+    std::cout << "Average Score: " << averageScore << ", Average Grade: " << calculateGrade(static_cast<int>(averageScore)) << std::endl;
+}
+
+int main() {
+    inputScoresAndDisplayResults();
+    return 0;
+}
